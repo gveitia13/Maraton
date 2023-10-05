@@ -1,0 +1,15 @@
+<div class="col">
+    <div class="card h-100">
+        <img src="{{ object.foto.url }}" class="card-img-top img-product" alt="...">
+        <div class="card-body">
+            <h6 class="card-title">{{ object.categoria }} | {{ object.nombre }}</h6>
+            <p class="truncate-4 card-text mb-1" style="font-size: 1rem">{{ object.descripcion }}</p>
+            <p class="card-text mb-1">{{ object.tipo }}</p>
+            <p class="card-text mb-0">Cantidad: {{ object.cantidad }}</p>
+        </div>
+        <div class="text-center card-footer">
+            <a href="" class="btn  my-1 btn-warning">Editar</a>
+            <a href="" class="btn my-1 btn-danger">Eliminar</a>
+        </div>
+    </div>
+</div>

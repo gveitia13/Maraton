@@ -1,0 +1,24 @@
+{% extends 'components/table-list.html' %}
+{% block thead %}
+    <th>Nombre</th>
+    <th>Descripción</th>
+    <th>Opciones</th>
+{% endblock %}
+
+{% block tbody %}
+    {% for object in object_list %}
+        <tr class="">
+            <td>{{ object.nombre }}</td>
+            <td>{{ object.descripcion }}</td>
+            <td>
+                <a href="{% url 'categoria-filter' object.pk %}" class="btn btn-outline-success" title="Filtrar"><i
+                        class="bx bx-detail"></i></a>
+                <a href="{% url 'categoria-editar' object.pk %}" title="Editar" class="btn btn-outline-warning"><i
+                        class="bx bx-edit"></i></a>
+                <a href="{% url 'categoria-eliminar' object.pk %}" class="btn btn-outline-danger" title="Eliminar"><i
+                        class="bx bx-trash"></i></a>
+            </td>
+        </tr>
+    {% endfor %}
+
+{% endblock %}

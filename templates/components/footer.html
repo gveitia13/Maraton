@@ -1,0 +1,31 @@
+<footer class="main-footer bg-primary text-white">
+    <div class="container py-4">
+        <div class="row d-flex align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <a href=""
+                   class="nav-link"><h3>Farmacia UCI</h3></a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <a class="nav-link"><h6>Enlaces útiles</h6></a>
+                <ul class="mb-0">
+                    <li><a href="" class="nav-link">Productos</a></li>
+                    <li><a href="" class="nav-link">Clasificaciones</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <a class="nav-link"><h6>Clasificaciones</h6></a>
+                <ul class="mb-0">
+                    {% for clasificion in clasificion_list %}
+                        <li><a href=""
+                               class="nav-link">{{ clasificion.nombre }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <h4>{{ farmacia.nombre }}:</h4>
+                <h6>{{ farmacia.telefono }}</h6>
+                <h6>{{ farmacia.direccion }}</h6>
+            </div>
+        </div>
+    </div>
+</footer>

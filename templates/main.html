@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    {% include 'components/navbar.html' %}
+{% endblock %}
+
+<main id="main" style="height: 100vh">
+    {% block main %}
+        {% if messages %}
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <ul class="">
+                    {% for message in messages %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                            <li>{{ message }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        {% block carousel %}
+            {% include 'components/carousel.html' %}
+        {% endblock %}
+
+    {% endblock %}
+</main><!-- End #main -->
+
+{% block footer %}
+    {% include 'components/footer.html' %}
+{% endblock %}

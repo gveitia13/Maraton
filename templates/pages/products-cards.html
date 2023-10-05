@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+{% block main %}
+    {% block carousel %}
+
+    {% endblock %}
+    <section class="section-products">
+        <div class="container">
+            <div>
+                <h3>{{ text }}</h3>
+            </div>
+            <br>
+            <div class="row g-3 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+                {% for object in object_list %}
+                    {% include 'components/card-product.html' %}
+                {% endfor %}
+            </div>
+            <br>
+            <div class="text-center">
+                <a href="{{ add_url }}" class="btn btn-primary btn-lg"><i class="bx bx-plus"></i> Crear</a>
+            </div>
+            <hr>
+        </div>
+    </section>
+{% endblock %}

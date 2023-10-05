@@ -1,0 +1,7 @@
+{% extends 'pages/create-farmacia.html' %}
+{% block delete-farmacia %}
+    {% if farmacia %}
+        <a href="{% url 'farmacia-eliminar' farmacia.pk %}"
+           class="btn btn-lg btn-outline-danger">Eliminar</a>
+    {% endif %}
+{% endblock %}

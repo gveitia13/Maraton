@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% block main %}
+    {% block carousel %}
+
+    {% endblock %}
+    <section class="section-delete">
+        <div class="container">
+            <div>
+                <h3>Eliminar {{ model_name }}!</h3>
+            </div>
+            <br>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="alert alert-dismissible alert-danger">
+                    <h4 class="alert-heading">Eliminar!</h4>
+                    <p class="mb-0 fs-6">Estás seguro que desea eliminar <b>{{ object }}</b>? Esta acción no se puede
+                        deshacer.</p>
+                </div>
+                <div class="text-center">
+                    <a href="{{ back_url }}" class="btn btn-success btn-lg">Atrás</a>
+                    <button type="submit" class="btn btn-outline-danger btn-lg">Eliminar</button>
+                </div>
+            </form>
+            <br>
+        </div>
+    </section>
+{% endblock %}
+
