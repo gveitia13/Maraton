@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block top-bar %}
+    {% include 'components/top-bar.html' %}
+{% endblock %}
+
 {% block header %}
     {% include 'components/navbar.html' %}
 {% endblock %}

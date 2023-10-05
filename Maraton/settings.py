@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'widget_tweaks',
     'django_cleanup.apps.CleanupConfig',
-    'solo'
+    'solo',
+    'apps.core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [

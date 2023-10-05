@@ -1,0 +1,89 @@
+@import url(static/fonts/Roboto_Condensed);
+
+* {
+    font-family: 'Roboto Condensed', sans-serif !important;
+}
+
+.img-carousel {
+    height: 18rem;
+}
+
+.img-product {
+    height: 10rem;
+}
+
+@media (min-width: 576px) {
+    .img-carousel {
+        height: 23rem;
+    }
+
+    .img-product {
+        height: 12rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .img-carousel {
+        height: 19rem;
+    }
+
+    .img-product {
+        height: 12rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .img-carousel {
+        height: 23rem;
+    }
+
+    .img-product {
+        height: 12rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .img-carousel {
+        height: 26rem;
+    }
+
+    .img-product {
+        height: 10rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    .img-carousel {
+        height: 30rem;
+    }
+}
+
+.truncate-1, .truncate-2, .truncate-3, .truncate-4 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.truncate-1 {
+    -webkit-line-clamp: 1;
+}
+
+.truncate-2 {
+    -webkit-line-clamp: 2;
+}
+
+.truncate-3 {
+    -webkit-line-clamp: 3;
+}
+
+.truncate-4 {
+    -webkit-line-clamp: 4;
+}
+
+.bg-index {
+    background-image: url("/static/img/HOME.SUS_.jpg") !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    color: white;
+}
