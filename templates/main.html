@@ -6,7 +6,12 @@
 {% endblock %}
 
 {% block header %}
-    {% include 'components/navbar.html' %}
+    {% if request.user.is_authenticated %}
+        {% include 'components/navbar-admin.html' %}
+    {% else %}
+        {% include 'components/navbar.html' %}
+    {% endif %}
+
 {% endblock %}
 
 <main id="main" style="height: 100vh">

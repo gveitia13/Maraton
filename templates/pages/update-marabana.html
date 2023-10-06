@@ -1,0 +1,7 @@
+{% extends 'pages/create-marabana.html' %}
+{% block delete-marabana %}
+    {% if marabana %}
+        <a href="{% url 'marabana-delete' marabana.pk %}"
+           class="btn btn-lg btn-outline-danger">Eliminar</a>
+    {% endif %}
+{% endblock %}

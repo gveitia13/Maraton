@@ -87,3 +87,21 @@
     background-size: cover !important;
     color: white;
 }
+
+.bg-navbar {
+    background: linear-gradient(to right, #223568, #45b7a9);
+}
+
+.navbar .nav-link {
+    color: white !important;
+}
+
+.navbar ul li.nav-item {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-weight: 600 !important;
+}
+
+.navbar ul li.nav-item:hover {
+    background: #45b7a9;
+}

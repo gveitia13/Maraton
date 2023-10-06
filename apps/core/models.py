@@ -7,7 +7,11 @@ class GeneralInformation(models.Model):
     datetime = models.DateTimeField('Fecha y hora')
     location = models.TextField('Lugar')
     description = models.TextField('Descripción')
+
     # banner (foto 16:9)
+
+    def __str__(self):
+        return 'Información general del Marabana'
 
 
 class TitleTextBaseModel(models.Model):
