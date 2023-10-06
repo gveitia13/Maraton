@@ -25,7 +25,11 @@
                     {% for field in form.visible_fields %}
                         <div class="form-group">
                             <label for="{{ field.id }}" class="form-label mt-4">{{ field.label }}</label>
-                            {{ field|add_class:'form-control' }}
+                            {% if 'Fecha' in field.label and is_create %}
+                                {{ field|add_class:'form-control'|attr:'type:datetime-local' }}
+                            {% else %}
+                                {{ field|add_class:'form-control' }}
+                            {% endif %}
                             {% if field.help_text %}
                                 <small class="form-text text-muted">{{ field.help_text }}</small>
                             {% endif %}

@@ -21,13 +21,14 @@ class TitleTextBaseModel(models.Model):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        return self.title
+
 
 class ExtraInformation(TitleTextBaseModel):
     location = models.CharField('Ubicación', max_length=300)
-    start_date = models.DateField('Fecha inicio')
-    end_date = models.DateField('Fecha fin')
-    start_time = models.TimeField('Hora de inicio', null=True, blank=True)
-    end_time = models.TimeField('Hora de fin', null=True, blank=True)
+    start_date = models.DateTimeField('Fecha inicio')
+    end_date = models.DateTimeField('Fecha fin')
     photo = models.ImageField('Foto', upload_to='images/', null=True, blank=True)
 
 

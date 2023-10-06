@@ -20,8 +20,6 @@ class MarabanaCreate(LoginRequiredMixin, generic.CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        marabana = GeneralInformation.objects.first() if GeneralInformation.objects.exists() else None
-        context['marabana'] = marabana
         context['text'] = f'{"Crear"} Información del Marabana'
         context['back_url'] = self.success_url
         context['is_create'] = True
@@ -36,8 +34,6 @@ class MarabanaUpdate(LoginRequiredMixin, generic.UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        marabana = GeneralInformation.objects.first() if GeneralInformation.objects.exists() else None
-        context['marabana'] = marabana
         context['text'] = f'{"Editar"} Información del Marabana'
         context['back_url'] = self.success_url
         return context

@@ -1,0 +1,28 @@
+{% extends 'components/table-list.html' %}
+{% block thead %}
+    <th>Título</th>
+    <th>Ubicación</th>
+    <th>Fecha inicio</th>
+    <th>Fecha fin</th>
+    <th>Texto</th>
+    <th>Opciones</th>
+{% endblock %}
+
+{% block tbody %}
+    {% for object in object_list %}
+        <tr class="">
+            <td>{{ object.title }}</td>
+            <td>{{ object.location }}</td>
+            <td>{{ object.start_date }}</td>
+            <td>{{ object.end_date }}</td>
+            <td>{{ object.text }}</td>
+            <td>
+                <a href="{% url 'extra-info-update' object.pk %}" title="Editar" class="btn btn-outline-warning"><i
+                        class="bx bx-edit"></i></a>
+                <a href="{% url 'extra-info-delete' object.pk %}" class="btn btn-outline-danger" title="Eliminar"><i
+                        class="bx bx-trash"></i></a>
+            </td>
+        </tr>
+    {% endfor %}
+
+{% endblock %}
