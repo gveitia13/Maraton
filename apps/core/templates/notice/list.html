@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block main %}
+    {% block carousel %}
+
+    {% endblock %}
+    <section class="section-table">
+        <div class="container">
+            <br>
+            <div>
+                <h3>{{ text }}</h3>
+            </div>
+            <br>
+            <div class="row d-flex g-4 justify-content-center row-cols-1 row-cols-md-2 row-cols-lg-3">
+                {% for object in object_list %}
+                    <div class="col">
+                        <div class="card h-100 rounded-0 bg-gray">
+                            <img src="{{ object.image.url }}" alt="" class="card-img-top img-fluid">
+                            <div class="card-body bg-light">
+                                <h5 class="card-title">{{ object.title }}</h5>
+                                <p class="card-text">{{ object.text }}</p>
+                                <p class="card-text text-end small">{{ object.date }}</p>
+                            </div>
+                            {% if request.user.is_authenticated %}
+                                <div class="card-footer px-sm-2 text-center bg-white rounded-0 border-0">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="{{ update_url }}{{ object.pk }}" title="Editar"
+                                           class="btn btn-outline-warning"><i
+                                                class="bx bx-edit"></i>Editar</a>
+                                        <a href="{{ delete_url }}{{ object.pk }}" class="btn btn-outline-danger"
+                                           title="Eliminar"><i class="bx bx-trash"></i>Eliminar</a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <br>
+            {% if request.user.is_authenticated %}
+                <div class="text-center">
+                    <a href="{{ add_url }}" class="btn btn-primary btn-lg"><i class="bx bx-plus"></i> Crear</a>
+                </div>
+            {% endif %}
+            <hr>
+        </div>
+    </section>
+{% endblock %}
+{% comment %}
+{% extends 'title_text_base/list.html' %}
+{% block extra_thead %}
+    <th>Fecha</th>
+{% endblock %}
+{% block extra_tbody %}
+    <td>{{ object.date }}</td>
+{% endblock %}{% endcomment %}

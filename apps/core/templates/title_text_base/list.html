@@ -1,0 +1,29 @@
+{% extends 'components/table-list.html' %}
+{% block thead %}
+    <th>Título</th>
+    <th>Texto</th>
+    <th>Opciones</th>
+    {% block extra_thead %}
+
+    {% endblock %}
+{% endblock %}
+
+{% block tbody %}
+    {% for object in object_list %}
+        <tr class="">
+            <td>{{ object.title }}</td>
+            <td>{{ object.text }}</td>
+
+            {% block extra_tbody %}
+
+            {% endblock %}
+            <td>
+                <a href="{{ update_url }}{{ object.pk }}" title="Editar" class="btn btn-outline-warning"><i
+                        class="bx bx-edit"></i></a>
+                <a href="{{ delete_url }}{{ object.pk }}" class="btn btn-outline-danger" title="Eliminar"><i
+                        class="bx bx-trash"></i></a>
+            </td>
+        </tr>
+    {% endfor %}
+
+{% endblock %}

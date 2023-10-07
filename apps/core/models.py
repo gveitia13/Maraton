@@ -85,6 +85,9 @@ class Inscription(models.Model):
 class Fotografia(models.Model):
     image = models.ImageField('Imagen', upload_to='images/')
 
+    def __str__(self):
+        return self.image.name
+
 
 class Notice(TitleTextBaseModel):
     date = models.DateTimeField('Fecha')
