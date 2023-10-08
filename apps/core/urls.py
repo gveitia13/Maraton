@@ -10,6 +10,7 @@ from apps.core.views.inscription import *
 from apps.core.views.marabana import *
 from apps.core.views.notice import *
 from apps.core.views.rule import *
+from apps.core.views.users import *
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
@@ -56,4 +57,9 @@ urlpatterns = [
     path('category-create/', CategoryCreate.as_view(), name='category-create'),
     path('category-delete/<int:pk>/', CategoryDelete.as_view(), name='category-delete'),
     path('category-update/<int:pk>/', CategoryUpdate.as_view(), name='category-update'),
+    # User
+    path('user-list/', ListarUsuario.as_view(), name='user-list'),
+    path('user-create/', CrearUsuario.as_view(), name='user-create'),
+    path('user-delete/<int:pk>/', EliminarUsuario.as_view(), name='user-delete'),
+    path('user-update/<int:pk>/', EditarUsuario.as_view(), name='user-update'),
 ]

@@ -11,6 +11,7 @@
                        href="
 
 
+
                                {% if marabana %}{% url 'marabana-update' marabana.pk %}{% else %}{% url 'marabana-create' %}{% endif %}">MARABANA
                         2023</a>
                 </li>
@@ -38,6 +39,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'category-list' %}">CATEGORÍAS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user-list' %}">USUARIOS</a>
                 </li>
                 <hr class="vr bg-white opacity-75" style="width: 2px">
                 <li class="nav-item">
