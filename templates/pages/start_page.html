@@ -13,7 +13,8 @@
             <h1 class="display-3">37ª edición Marabana Cuba</h1>
             <br><br>
             <div>
-                <button class="btn fs-2 btn-lg btn-info rounded-0 text-uppercase">Inscríbete ya!</button>
+                <a href="{% url 'inscription-create' %}" class="btn fs-2 btn-lg btn-info rounded-0 text-uppercase">Inscríbete
+                    ya!</a>
             </div>
             <br>
         </div>
@@ -21,20 +22,25 @@
     <br>
     <section class="section-products">
         <div class="container">
-            <div>
-                <h3>{{ text }}</h3>
-            </div>
             <br>
-            <div class="row g-3 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-                {% for object in object_list|slice:5 %}
-                    {% include 'components/card-product.html' %}
+            <h3 class="text-center">Marabana Cuba es mucho más!</h3>
+            <br>
+            <p class="text-center">{{ marabana.description }}</p>
+            <p class="text-center">{{ marabana.datetime }}</p>
+            <hr>
+            <div class="row g-3">
+                {% for category in category_list %}
+                    <div class="col-6 col-sm-4 col-md-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ category.title }}</h5>
+                                <p class="card-text">{{ category.text }}</p>
+                            </div>
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
             <br>
-            <div class="text-center">
-                <a href="{{ add_url }}" class="btn btn-primary btn-lg"><i class="bx bx-plus"></i> Crear</a>
-            </div>
-            <hr>
         </div>
     </section>
 {% endblock %}

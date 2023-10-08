@@ -49,17 +49,16 @@ class Inscription(models.Model):
     last_name = models.CharField('Apellidos', max_length=200)
     address = models.TextField('Dirección')
     country = models.CharField('País', max_length=100)
-    postal_code = models.CharField('Código postal', max_length=8)
-    dni = models.CharField('Carnet de id', max_length=11,
-                           validators=[MinLengthValidator(11), validate_integer])
+    postal_code = models.CharField('Código postal', max_length=5, validators=[MinLengthValidator(5), validate_integer])
+    dni = models.CharField('Carnet de id', max_length=11, validators=[MinLengthValidator(11), validate_integer])
     birth_date = models.DateField('Fecha de nacimiento')
     gender = models.SmallIntegerField('Género', choices=(
         (0, 'Masculino'),
         (1, 'Femenino')
     ))
-    phone = models.CharField('Teléfono', max_length=8)
+    phone = models.CharField('Teléfono', max_length=8, validators=[MinLengthValidator(8), validate_integer])
     email = models.EmailField('Correo')
-    email_confirm = models.EmailField('Correo Confirmación')
+    email_confirm = models.EmailField('Confirmación de correo')
     average_time = models.PositiveSmallIntegerField('Tiempo estimado', choices=(
         (1, 'Menos de 3h'),
         (2, 'Entre 3h y 3h15'),
@@ -80,6 +79,9 @@ class Inscription(models.Model):
     def save(self, *args, **kwargs):
         self.full_clean()
         return super().save()
+
+    def __str__(self):
+        return f'Inscripción de {self.name} {self.last_name}'
 
 
 class Fotografia(models.Model):

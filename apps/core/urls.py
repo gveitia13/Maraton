@@ -1,17 +1,18 @@
-from django.shortcuts import render
 from django.urls import path
 
-from apps.core.views.admin.campeonato import *
-from apps.core.views.admin.contact import *
-from apps.core.views.admin.extra_info import *
-from apps.core.views.admin.fotografia import *
-from apps.core.views.admin.marabana import *
-from apps.core.views.admin.notice import *
-from apps.core.views.admin.rule import *
+from apps.core.views.campeonato import *
+from apps.core.views.category import *
+from apps.core.views.contact import *
+from apps.core.views.extra_info import *
+from apps.core.views.fotografia import *
+from apps.core.views.index import IndexView
+from apps.core.views.inscription import *
+from apps.core.views.marabana import *
+from apps.core.views.notice import *
+from apps.core.views.rule import *
 
 urlpatterns = [
-    path('', lambda request: render(request, 'pages/start_page.html')
-    if request.user.is_authenticated else render(request, 'pages/start_page.html'), name='index'),
+    path('', IndexView.as_view(), name='index'),
     # Marabana
     path('crear-info-marabana/', MarabanaCreate.as_view(), name='marabana-create'),
     path('eliminar-info-marabana/<int:pk>/', MarabanaDelete.as_view(), name='marabana-delete'),
@@ -46,4 +47,13 @@ urlpatterns = [
     path('contact-create/', ContactCreate.as_view(), name='contact-create'),
     path('contact-update/<int:pk>/', ContactUpdate.as_view(), name='contact-update'),
     path('contact-delete/<int:pk>/', ContactDelete.as_view(), name='contact-delete'),
+    # Inscription
+    path('inscription-list/', InscriptionList.as_view(), name='inscription-list'),
+    path('inscription-create/', InscriptionCreate.as_view(), name='inscription-create'),
+    path('inscription-delete/<int:pk>/', InscriptionDelete.as_view(), name='inscription-delete'),
+    # Category
+    path('category-list/', CategoryList.as_view(), name='category-list'),
+    path('category-create/', CategoryCreate.as_view(), name='category-create'),
+    path('category-delete/<int:pk>/', CategoryDelete.as_view(), name='category-delete'),
+    path('category-update/<int:pk>/', CategoryUpdate.as_view(), name='category-update'),
 ]

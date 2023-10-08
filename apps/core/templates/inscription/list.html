@@ -1,0 +1,26 @@
+{% extends 'components/table-list.html' %}
+{% block thead %}
+    <th>Nombre</th>
+    <th>Teléfono</th>
+    <th>Carnet ID</th>
+    <th>Correo</th>
+    <th>Tiempo de carrera</th>
+    <th>Opciones</th>
+{% endblock %}
+
+{% block tbody %}
+    {% for object in object_list %}
+        <tr class="">
+            <td>{{ object.name }} {{ object.last_name }}</td>
+            <td>+53 {{ object.phone }}</td>
+            <td>{{ object.dni }}</td>
+            <td>{{ object.email }}</td>
+            <td>{{ object.get_average_time_display }}</td>
+            <td>
+                <a href="{{ delete_url }}{{ object.pk }}" class="btn btn-outline-danger" title="Eliminar"><i
+                        class="bx bx-trash"></i></a>
+            </td>
+        </tr>
+    {% endfor %}
+
+{% endblock %}
