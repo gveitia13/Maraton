@@ -46,7 +46,7 @@ class EliminarUsuario(LoginRequiredMixin, generic.DeleteView):
 
 class ListarUsuario(LoginRequiredMixin, generic.ListView):
     model = get_user_model()
-    template_name = 'pages/user-list.html'
+    template_name = 'user/user-list.html'
 
     def get_queryset(self):
         qs = super().get_queryset()

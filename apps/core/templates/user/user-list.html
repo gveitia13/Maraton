@@ -1,4 +1,20 @@
 {% extends 'components/table-list.html' %}
+
+{% block search %}
+    <form action="">
+        <div class="input-group mb-3">
+            <input type="search" name="search" list="datalistOptions" class="form-control"
+                   placeholder="Buscar por usuario">
+            <datalist id="datalistOptions">
+                {% for object in object_list %}
+                    <option value="{{ object }}">
+                {% endfor %}
+            </datalist>
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+        </div>
+    </form>
+{% endblock %}
+
 {% block thead %}
     <th>Nombre de usuario</th>
     <th>Correo</th>
