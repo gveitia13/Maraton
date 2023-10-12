@@ -68,6 +68,7 @@ class Inscription(models.Model):
         (6, 'Más de 4h'),
     ))
     race_rules = models.BooleanField('Reglamento de la carrera', default=False)
+    is_active = models.BooleanField('Aprobada', default=False)
 
     def clean(self):
         if self.email != self.email_confirm:

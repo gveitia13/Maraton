@@ -52,6 +52,7 @@ urlpatterns = [
     path('inscription-list/', InscriptionList.as_view(), name='inscription-list'),
     path('inscription-create/', InscriptionCreate.as_view(), name='inscription-create'),
     path('inscription-delete/<int:pk>/', InscriptionDelete.as_view(), name='inscription-delete'),
+    path('inscription-update/<int:pk>/', InscriptionUpdate.as_view(), name='inscription-update'),
     # Category
     path('category-list/', CategoryList.as_view(), name='category-list'),
     path('category-create/', CategoryCreate.as_view(), name='category-create'),

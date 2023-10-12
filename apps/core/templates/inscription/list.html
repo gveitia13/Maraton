@@ -21,6 +21,7 @@
     <th>Carnet ID</th>
     <th>Correo</th>
     <th>Tiempo de carrera</th>
+    <th>Estado</th>
     <th>Opciones</th>
 {% endblock %}
 
@@ -32,9 +33,14 @@
             <td>{{ object.dni }}</td>
             <td>{{ object.email }}</td>
             <td>{{ object.get_average_time_display }}</td>
+            <td class="text-center">{% if object.is_active %}
+                <i class="bx bx-check-circle fs-3 text-success"></i>{% else %}
+                <i class="bx bxs-x-circle fs-3 text-danger"></i>{% endif %}</td>
             <td>
                 <a href="{{ delete_url }}{{ object.pk }}" class="btn btn-outline-danger" title="Eliminar"><i
                         class="bx bx-trash"></i></a>
+                <a href="{{ update_url }}{{ object.pk }}" class="btn btn-outline-success" title="Aprobar"><i
+                        class="bx bx-check-circle"></i></a>
             </td>
         </tr>
     {% endfor %}

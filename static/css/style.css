@@ -105,3 +105,7 @@
 .navbar ul li.nav-item:hover {
     background: #45b7a9;
 }
+
+.bg-gray {
+    background-color: #ebebeb !important
+}

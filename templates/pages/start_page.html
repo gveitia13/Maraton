@@ -1,10 +1,21 @@
 {% extends 'main.html' %}
+{% load static %}
 {% block main %}
     {{ block.super }}
     {% block carousel %}
 
     {% endblock %}
     <div class="bg-index position-relative w-100">
+        {% if messages %}
+            {% for  message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{ message }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
         <div class="d-flex justify-content-center flex-column text-center">
             <h1 CLASS="display-1 fw-medium mt-5"><strong>MARABANA 2023</strong></h1>
             <br>
@@ -20,27 +31,70 @@
         </div>
     </div>
     <br>
-    <section class="section-products">
-        <div class="container">
+    <section class="py-4">
+        <div class="container-xl">
             <br>
-            <h3 class="text-center">Marabana Cuba es mucho más!</h3>
+            <h3 class="text-center text-uppercase text-dark-emphasis">Marabana Cuba es mucho más!</h3>
             <br>
-            <p class="text-center">{{ marabana.description }}</p>
-            <p class="text-center">{{ marabana.datetime }}</p>
+            <p class="text-center">Si quieres consagrarte como maratoniano, ya es hora de que cojas la maleta, metas las
+                zapatillas de <em>running</em> y te pongas rumbo al Caribe. Haz una escapada y disfruta del maratón
+                isleño más épico; corre por las calles de la vieja ciudad de La Habana: música, playa, una estupenda
+                gastronomía, sus gentes y su suave folclore es lo que te espera en esa ciudad tan espectacular y repleta
+                de historia.</p>
+            <p class="text-center small fw-bolder">La Habana es otro mundo!</p>
+            <br>
             <hr>
-            <div class="row g-3">
-                {% for category in category_list %}
-                    <div class="col-6 col-sm-4 col-md-3">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ category.title }}</h5>
-                                <p class="card-text">{{ category.text }}</p>
-                            </div>
+            <div class="row g-4">
+                <div class="col-12 col-lg-5">
+                    <div class="card rounded-0 bg-gray border-0">
+                        <div class="card-body p-4 rounded-0">
+                            <h5 style="color:darkblue">INFORMACIÓN GENERAL</h5>
+                            <ul>
+                                <li><p style="color:darkblue;margin-bottom: 0">Fecha:</p>
+                                    <span>{{ marabana.datetime|date:"l j \d\e F \d\e Y"|capfirst }}</span></li>
+                                <li><p style="color:darkblue;margin-bottom: 0">Hora:</p>
+                                    <span>{{ marabana.datetime|time:"H:i" }}</span></li>
+                                <li><p style="color:darkblue;margin-bottom: 0">Donde:</p>
+                                    <span>{{ marabana.location }}</span></li>
+                                <li><p style="color:darkblue;margin-bottom: 0">Inscripciones abiertas</p></li>
+                            </ul>
+                            {% for extra_info in extra_info_list %}
+                                <hr>
+                                <h5 style="color:darkblue;text-transform: uppercase;">{{ extra_info.title }}</h5>
+                                <ul class="list-unstyled">
+                                    <li><p style="color:darkblue;margin-bottom: 0">Ubicación:</p>
+                                        <span>{{ extra_info.location }}</span></li>
+                                    <li><p style="color:darkblue;margin-bottom: 0">Fecha y hora:</p>
+                                        <span>
+                                            Del {{ extra_info.start_date|date:"d" }} de {{ extra_info.start_date|date:"F" }} al {{ extra_info.end_date|date:"d" }} de {{ extra_info.end_date|date:"F" }}
+                                        </span></li>
+                                </ul>
+                                <img src="{{ extra_info.photo.url }}" alt="Foto" class="img-fluid card-img-bottom">
+                            {% endfor %}
                         </div>
                     </div>
-                {% endfor %}
+                </div>
+                <div class="col-12 col-lg-7">
+                    <h5 style="color:darkblue">MARABANA CUBA 2023</h5>
+                    <p>{{ marabana.description }}</p>
+                    <img src="{% static 'img/ARB1963-1536x1024.jpg' %}" alt="FOTO" class="img-fluid">
+                    <br><br>
+                    <div class="row g-3">
+                        <h5 class="text-center text-uppercase" style="color:darkblue">Categorías</h5>
+                        {% for category in category_list %}
+                            <div class="col-6 col-sm-4 col-md-3 col-lg-4">
+                                <div class="card h-100 rounded-0 border-0 bg-info text-white">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ category.title }}</h5>
+                                        <p class="card-text">{{ category.text }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
             </div>
-            <br>
         </div>
     </section>
 {% endblock %}
