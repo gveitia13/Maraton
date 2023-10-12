@@ -46,6 +46,7 @@ class InscriptionList(generic.ListView):
         context['add_url'] = reverse_lazy('inscription-create')
         context['update_url'] = '/inscription-update/'
         context['delete_url'] = '/inscription-delete/'
+        # context['result_create'] = '/result-create/'
         return context
 
 

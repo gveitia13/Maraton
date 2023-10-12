@@ -2,39 +2,39 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views import generic
 
-from apps.core.models import Campeonato
+from apps.core.models import Result
 
 
-class CampeonatoCreate(LoginRequiredMixin, generic.CreateView):
-    model = Campeonato
-    template_name = 'pages/create-update.html'
-    success_url = reverse_lazy('champion-list')
+class ResultCreate(LoginRequiredMixin, generic.CreateView):
+    model = Result
+    template_name = 'result/create-update.html'
+    success_url = reverse_lazy('result-list')
     fields = '__all__'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        context['text'] = 'Crear Campeonato'
+        context['text'] = 'Registrar Resultado de carrera'
         context['back_url'] = self.success_url
         context['is_create'] = True
         return context
 
 
-class CampeonatoUpdate(LoginRequiredMixin, generic.UpdateView):
-    model = Campeonato
-    template_name = 'pages/create-update.html'
-    success_url = reverse_lazy('champion-list')
+class ResultUpdate(LoginRequiredMixin, generic.UpdateView):
+    model = Result
+    template_name = 'result/create-update.html'
+    success_url = reverse_lazy('result-list')
     fields = '__all__'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        context['text'] = f'Actualizar Campeonato: {self.get_object()}'
+        context['text'] = f'Actualizar Resultado: {self.get_object()}'
         context['back_url'] = self.success_url
         return context
 
 
-class CampeonatoList(LoginRequiredMixin, generic.ListView):
-    model = Campeonato
-    template_name = 'title_text_base/list.html'
+class ResultList(LoginRequiredMixin, generic.ListView):
+    model = Result
+    template_name = 'result/list.html'
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -44,20 +44,20 @@ class CampeonatoList(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
-        context['text'] = 'Listado de Campeonatos'
-        context['add_url'] = reverse_lazy('champion-create')
-        context['update_url'] = '/champion-update/'
-        context['delete_url'] = '/champion-delete/'
+        context['text'] = 'Listado de Resultados de Carreras'
+        context['add_url'] = reverse_lazy('result-create')
+        context['update_url'] = '/result-update/'
+        context['delete_url'] = '/result-delete/'
         return context
 
 
-class CampeonatoDelete(LoginRequiredMixin, generic.DeleteView):
-    model = Campeonato
+class ResultDelete(LoginRequiredMixin, generic.DeleteView):
+    model = Result
     template_name = 'pages/delete.html'
-    success_url = reverse_lazy('champion-list')
+    success_url = reverse_lazy('result-list')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        context['model_name'] = 'Campeonato'
+        context['model_name'] = 'Resultado'
         context['back_url'] = self.success_url
         return context

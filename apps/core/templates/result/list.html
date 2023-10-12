@@ -1,0 +1,44 @@
+{% extends 'components/table-list.html' %}
+
+{% block search %}
+    <form action="">
+        <div class="input-group mb-3">
+            <input type="search" name="search" list="datalistOptions" class="form-control"
+                   placeholder="Buscar por título">
+            <datalist id="datalistOptions">
+                {% for object in object_list|slice:4 %}
+                    <option value="{{ object }}">
+                {% endfor %}
+            </datalist>
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+        </div>
+    </form>
+{% endblock %}
+{% block thead %}
+    <th>Nombre</th>
+    <th>País</th>
+    <th>Género</th>
+    <th>Duración</th>
+    <th>Category</th>
+    <th>Fecha</th>
+{% endblock %}
+
+{% block tbody %}
+    {% for object in object_list %}
+        <tr class="">
+            <td>{{ object.name }} {{ object.last_name }}</td>
+            <td>{{ object.country }}</td>
+            <td>{{ object.get_gender_display }}</td>
+            <td>{{ object.duration }} min</td>
+            <td>{{ object.get_category_display }}</td>
+            <td>{{ object.date }}</td>
+            <td>
+                <a href="{{ update_url }}{{ object.pk }}" title="Editar" class="btn btn-outline-warning"><i
+                        class="bx bx-edit"></i></a>
+                <a href="{{ delete_url }}{{ object.pk }}" class="btn btn-outline-danger" title="Eliminar"><i
+                        class="bx bx-trash"></i></a>
+            </td>
+        </tr>
+    {% endfor %}
+
+{% endblock %}

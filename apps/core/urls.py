@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.core.views.campeonato import *
+from apps.core.views.results import *
 from apps.core.views.category import *
 from apps.core.views.contact import *
 from apps.core.views.extra_info import *
@@ -28,11 +28,11 @@ urlpatterns = [
     path('rule-create/', RuleCreate.as_view(), name='rule-create'),
     path('rule-update/<int:pk>/', RuleUpdate.as_view(), name='rule-update'),
     path('rule-delete/<int:pk>/', RuleDelete.as_view(), name='rule-delete'),
-    # Campeonato
-    path('champion-list/', CampeonatoList.as_view(), name='champion-list'),
-    path('champion-create/', CampeonatoCreate.as_view(), name='champion-create'),
-    path('champion-update/<int:pk>/', CampeonatoUpdate.as_view(), name='champion-update'),
-    path('champion-delete/<int:pk>/', CampeonatoDelete.as_view(), name='champion-delete'),
+    # Resultado
+    path('result-list/', ResultList.as_view(), name='result-list'),
+    path('result-create/', ResultCreate.as_view(), name='result-create'),
+    path('result-update/<int:pk>/', ResultUpdate.as_view(), name='result-update'),
+    path('result-delete/<int:pk>/', ResultDelete.as_view(), name='result-delete'),
     # Noticia
     path('notice-list/', NoticeList.as_view(), name='notice-list'),
     path('notice-create/', NoticeCreate.as_view(), name='notice-create'),

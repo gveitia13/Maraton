@@ -1,3 +1,5 @@
+import datetime
+
 from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator, MaxLengthValidator, validate_integer
 from django.db import models
@@ -40,8 +42,28 @@ class Rule(TitleTextBaseModel):
     pass
 
 
-class Campeonato(TitleTextBaseModel):
-    pass
+class Result(models.Model):
+    name = models.CharField('Nombre', max_length=100)
+    last_name = models.CharField('Apellidos', max_length=200)
+    country = models.CharField('País', max_length=100)
+    gender = models.SmallIntegerField('Género', choices=(
+        (0, 'M'),
+        (1, 'F')
+    ))
+    email = models.EmailField('Correo')
+    duration = models.PositiveIntegerField('Duración en minutos')
+    date = models.DateField('Fecha de de la carrera', default=datetime.datetime.utcnow())
+    category = models.CharField('Categoría', max_length=10, choices=(
+        ('m', 'Maratón'),
+        ('mm', 'Media Maratón'),
+        ('10', '10 km'),
+        ('msr', 'Maratón silla de ruedas'),
+        ('mmsr', 'Medio Maratón silla de ruedas'),
+        ('10sr', '10 km silla de ruedas'),
+    ))
+
+    def __str__(self):
+        return f'Resultado de carrera de {self.name} {self.last_name}'
 
 
 class Inscription(models.Model):

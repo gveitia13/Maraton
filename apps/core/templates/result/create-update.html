@@ -1,0 +1,122 @@
+{% extends 'main.html' %}
+{% block main %}
+    {% block carousel %}
+
+    {% endblock %}
+    {% load widget_tweaks %}
+    <section class="section-create-update">
+        <div class="container-lg">
+            <div>
+                <h3>{{ text }}</h3>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    {% if form.errors %}
+                        <div class="alert alert-dismissible alert-danger">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            <h4>Por favor corrige los errores en el formulario.</h4>
+                        </div>
+                    {% endif %}
+
+
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.name.id }}"
+                                           class="form-label mt-4">{{ form.name.label }}</label>
+                                    {{ form.name|add_class:'form-control' }}
+                                    {% if form.name.errors %}
+                                        <small class="text-danger">{{ form.name.errors }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.last_name.id }}"
+                                           class="form-label mt-4">{{ form.last_name.label }}</label>
+                                    {{ form.last_name|add_class:'form-control' }}
+                                    {% if form.last_name.errors %}
+                                        <small class="text-danger">{{ form.last_name.errors }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.country.id }}"
+                                           class="form-label mt-4">{{ form.country.label }}</label>
+                                    {{ form.country|add_class:'form-control'|attr:'rows:3' }}
+                                    {% if form.country.errors %}
+                                        <small class="text-danger">{{ form.country.errors }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.gender.id }}"
+                                           class="form-label mt-4">{{ form.gender.label }}</label>
+                                    {{ form.gender|add_class:'form-control' }}
+                                    {% if form.gender.errors %}
+                                        <small class="text-danger">{{ form.gender.errors }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.email.id }}"
+                                           class="form-label mt-4">{{ form.email.label }}</label>
+                                    {{ form.email|add_class:'form-control' }}
+                                    {% if form.email.errors %}
+                                        <small class="text-danger">{{ form.email.errors }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.duration.id }}"
+                                           class="form-label mt-4">{{ form.duration.label }}</label>
+                                    {{ form.duration|add_class:'form-control'|attr:'type:number' }}
+                                    {% if form.duration.errors %}
+                                        <small class="text-danger">{{ form.duration.errors }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.date.id }}"
+                                           class="form-label mt-4">{{ form.date.label }}</label>
+                                    {% if is_create %}
+                                        {{ form.date|add_class:'form-control'|attr:'type:datetime-local' }}
+                                    {% else %}
+                                        {{ form.date|add_class:'form-control' }}
+                                    {% endif %}
+                                    {% if form.date.errors %}
+                                        <small class="text-danger">{{ form.date.errors }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.category.id }}"
+                                           class="form-label mt-4">{{ form.category.label }}</label>
+                                    {{ form.category|add_class:'form-control' }}
+                                    {% if form.category.errors %}
+                                        <small class="text-danger">{{ form.category.errors }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="text-center">
+                            <a href="{{ back_url }}" class="btn btn-lg btn-outline-secondary">Atrás</a>
+                            <button type="submit" class="btn btn-lg btn-primary">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
