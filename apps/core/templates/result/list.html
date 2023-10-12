@@ -2,15 +2,35 @@
 
 {% block search %}
     <form action="">
-        <div class="input-group mb-3">
-            <input type="search" name="search" list="datalistOptions" class="form-control"
-                   placeholder="Buscar por título">
-            <datalist id="datalistOptions">
-                {% for object in object_list|slice:4 %}
-                    <option value="{{ object }}">
-                {% endfor %}
-            </datalist>
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+        <div class="mb-3 g-1 row d-flex justify-content-center">
+            <div class="col-12 col-md-5">
+                <input type="search" name="search" list="datalistOptions" class="form-control"
+                       placeholder="Buscar por nombre">
+                <datalist id="datalistOptions">
+                    {% for object in object_list|slice:4 %}
+                        <option value="{{ object.name }}">
+                    {% endfor %}
+                </datalist>
+            </div>
+            <div class="col-6 col-md-3">
+                <select name="year" id="" class="form-select">
+                    <option value="" selected>Año</option>
+                    {% for year in years %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-6 col-md-3">
+                <select name="category" id="" class="form-select">
+                    <option value="" selected>Categoría</option>
+                    {% for key, value in categories %}
+                        <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-1">
+                <button class="btn btn-secondary rounded-1" type="submit" id="button-addon2">Buscar</button>
+            </div>
         </div>
     </form>
 {% endblock %}
@@ -41,4 +61,8 @@
         </tr>
     {% endfor %}
 
+{% endblock %}
+
+{% block footer_table %}
+    <a href="#" class="btn btn-outline-info btn-lg">Histórico</a>
 {% endblock %}
