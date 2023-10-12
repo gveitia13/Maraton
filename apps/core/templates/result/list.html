@@ -41,6 +41,9 @@
     <th>Duración</th>
     <th>Category</th>
     <th>Fecha</th>
+    {% if request.user.is_authenticated %}
+        <th>Opciones</th>
+    {% endif %}
 {% endblock %}
 
 {% block tbody %}
@@ -52,12 +55,14 @@
             <td>{{ object.duration }} min</td>
             <td>{{ object.get_category_display }}</td>
             <td>{{ object.date }}</td>
-            <td>
-                <a href="{{ update_url }}{{ object.pk }}" title="Editar" class="btn btn-outline-warning"><i
-                        class="bx bx-edit"></i></a>
-                <a href="{{ delete_url }}{{ object.pk }}" class="btn btn-outline-danger" title="Eliminar"><i
-                        class="bx bx-trash"></i></a>
-            </td>
+            {% if request.user.is_authenticated %}
+                <td>
+                    <a href="{{ update_url }}{{ object.pk }}" title="Editar" class="btn btn-outline-warning"><i
+                            class="bx bx-edit"></i></a>
+                    <a href="{{ delete_url }}{{ object.pk }}" class="btn btn-outline-danger" title="Eliminar"><i
+                            class="bx bx-trash"></i></a>
+                </td>
+            {% endif %}
         </tr>
     {% endfor %}
 

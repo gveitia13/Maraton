@@ -32,7 +32,7 @@ class ResultUpdate(LoginRequiredMixin, generic.UpdateView):
         return context
 
 
-class ResultList(LoginRequiredMixin, generic.ListView):
+class ResultList(generic.ListView):
     model = Result
     template_name = 'result/list.html'
     queryset = Result.objects.all().order_by('-date')
