@@ -1,5 +1,22 @@
 {% extends 'components/table-list.html' %}
-
+{% block top_text %}
+    <div>
+        <h3>{{ text }}</h3>
+        <h5>Total de participantes: {{ object_list.count }}</h5>
+        <hr>
+        <h6>Categorías:</h6>
+        {% for result in results %}
+            <p class="mb-0">{{ result.title }}:</p>
+            <ul>
+                {% for foo in result.list %}
+                    <li>{{ foo.name }} {{ foo.last_name }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+        <hr>
+        <h3>Detalles de los participantes:</h3>
+    </div>
+{% endblock %}
 {% block thead %}
     <th>Nombre</th>
     <th>País</th>
@@ -21,6 +38,9 @@
         </tr>
     {% endfor %}
 
+{% endblock %}
+{% block btn_create %}
+    <a href="{% url 'result-list' %}" class="btn btn-primary btn-lg"><i class="bx bx-left-arrow"></i> Atrás</a>
 {% endblock %}
 
 {% block extra_scripts %}

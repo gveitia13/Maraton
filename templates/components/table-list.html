@@ -6,9 +6,11 @@
     <section class="section-table">
         <div class="container-xl">
             <br>
-            <div>
-                <h3>{{ text }}</h3>
-            </div>
+            {% block top_text %}
+                <div>
+                    <h3>{{ text }}</h3>
+                </div>
+            {% endblock %}
             <br>
             {% block search %}
 
@@ -30,9 +32,12 @@
                 </table>
             </div>
             <div class="text-center">
-                {% if request.user.is_authenticated %}
-                    <a href="{{ add_url }}" class="btn btn-primary btn-lg"><i class="bx bx-plus"></i> Crear</a>
-                {% endif %}
+                {% block btn_create %}
+                    {% if request.user.is_authenticated %}
+                        <a href="{{ add_url }}" class="btn btn-primary btn-lg"><i class="bx bx-plus"></i> Crear</a>
+                    {% endif %}
+                {% endblock %}
+
                 {% block footer_table %}
 
                 {% endblock %}

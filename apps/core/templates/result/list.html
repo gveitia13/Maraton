@@ -69,7 +69,7 @@
 {% endblock %}
 
 {% block footer_table %}
-    <form action="" method="post" id="history">
+    <form action="" class="d-inline" method="post" id="history">
         {% csrf_token %}
         <input type="hidden" name="search" id="form-search">
         <input type="hidden" name="year" id="form-year">

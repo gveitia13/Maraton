@@ -42,6 +42,16 @@ class Rule(TitleTextBaseModel):
     pass
 
 
+categories = (
+    ('m', 'Maratón'),
+    ('mm', 'Media Maratón'),
+    ('10', '10 km'),
+    ('msr', 'Maratón silla de ruedas'),
+    ('mmsr', 'Medio Maratón silla de ruedas'),
+    ('10sr', '10 km silla de ruedas'),
+)
+
+
 class Result(models.Model):
     name = models.CharField('Nombre', max_length=100)
     last_name = models.CharField('Apellidos', max_length=200)
@@ -53,14 +63,7 @@ class Result(models.Model):
     email = models.EmailField('Correo')
     duration = models.PositiveIntegerField('Duración en minutos')
     date = models.DateField('Fecha de de la carrera', default=datetime.datetime.utcnow())
-    category = models.CharField('Categoría', max_length=10, choices=(
-        ('m', 'Maratón'),
-        ('mm', 'Media Maratón'),
-        ('10', '10 km'),
-        ('msr', 'Maratón silla de ruedas'),
-        ('mmsr', 'Medio Maratón silla de ruedas'),
-        ('10sr', '10 km silla de ruedas'),
-    ))
+    category = models.CharField('Categoría', max_length=10, choices=categories)
 
     def __str__(self):
         return f'Resultado de carrera de {self.name} {self.last_name}'

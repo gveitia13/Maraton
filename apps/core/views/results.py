@@ -1,9 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from apps.core.models import Result
+from apps.core.models import Result, categories
 
 
 class ResultCreate(LoginRequiredMixin, generic.CreateView):
@@ -50,7 +50,6 @@ class ResultList(generic.ListView):
 
     def post(self, request, *args, **kwargs):
         qs = self.queryset
-        print(request.POST)
         year, category = self.request.POST.get('year'), self.request.POST.get('category')
         if year:
             qs = qs.filter(date__year=year)
@@ -60,14 +59,21 @@ class ResultList(generic.ListView):
         if not category and year:
             string = f'Resultados históricos de las carreras del año {year}'
         elif not year and category:
-            string = f'Resultados históricos de las carreras de la categoría {category}'
+            string = f'Resultados históricos de las carreras de la categoría {dict(categories)[category]}'
         elif not year and not category:
             string = f'Resultados históricos de las carreras'
         else:
-            string = f'Resultados históricos de las carreras de la categoría {category} del año {year}'
+            string = f'Resultados históricos de las carreras de la categoría {dict(categories)[category]} del año {year}'
         print(string)
-        return render(request, 'result/history.html', context={'object_list': qs, 'text': string})
-        # return redirect(reverse_lazy('result-list'))
+
+        results = []
+        for category, value in categories:
+            if qs.filter(category=category).exists():
+                results.append({'title': value, 'list': qs.filter(category=category)})
+
+        return render(request, 'result/history.html',
+                      context={'object_list': qs,
+                               'text': string, 'results': results})
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
@@ -76,14 +82,7 @@ class ResultList(generic.ListView):
         context['update_url'] = '/result-update/'
         context['delete_url'] = '/result-delete/'
         context['years'] = [i.date.year for i in self.queryset]
-        context['categories'] = (
-            ('m', 'Maratón'),
-            ('mm', 'Media Maratón'),
-            ('10', '10 km'),
-            ('msr', 'Maratón silla de ruedas'),
-            ('mmsr', 'Medio Maratón silla de ruedas'),
-            ('10sr', '10 km silla de ruedas'),
-        )
+        context['categories'] = categories
         return context
 
 
