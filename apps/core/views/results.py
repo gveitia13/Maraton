@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -46,6 +47,27 @@ class ResultList(generic.ListView):
         if self.request.GET.get('category'):
             qs = qs.filter(category=self.request.GET.get('category'))
         return qs
+
+    def post(self, request, *args, **kwargs):
+        qs = self.queryset
+        print(request.POST)
+        year, category = self.request.POST.get('year'), self.request.POST.get('category')
+        if year:
+            qs = qs.filter(date__year=year)
+        if category:
+            qs = qs.filter(category=category)
+        print(qs)
+        if not category and year:
+            string = f'Resultados históricos de las carreras del año {year}'
+        elif not year and category:
+            string = f'Resultados históricos de las carreras de la categoría {category}'
+        elif not year and not category:
+            string = f'Resultados históricos de las carreras'
+        else:
+            string = f'Resultados históricos de las carreras de la categoría {category} del año {year}'
+        print(string)
+        return render(request, 'result/history.html', context={'object_list': qs, 'text': string})
+        # return redirect(reverse_lazy('result-list'))
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()

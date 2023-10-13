@@ -4,7 +4,7 @@
     <form action="">
         <div class="mb-3 g-1 row d-flex justify-content-center">
             <div class="col-12 col-md-5">
-                <input type="search" name="search" list="datalistOptions" class="form-control"
+                <input type="search" name="search" id="search-search" list="datalistOptions" class="form-control"
                        placeholder="Buscar por nombre">
                 <datalist id="datalistOptions">
                     {% for object in object_list|slice:4 %}
@@ -13,7 +13,7 @@
                 </datalist>
             </div>
             <div class="col-6 col-md-3">
-                <select name="year" id="" class="form-select">
+                <select name="year" id="search-year" class="form-select">
                     <option value="" selected>Año</option>
                     {% for year in years %}
                         <option value="{{ year }}">{{ year }}</option>
@@ -21,7 +21,7 @@
                 </select>
             </div>
             <div class="col-6 col-md-3">
-                <select name="category" id="" class="form-select">
+                <select name="category" id="search-category" class="form-select">
                     <option value="" selected>Categoría</option>
                     {% for key, value in categories %}
                         <option value="{{ key }}">{{ value }}</option>
@@ -69,5 +69,24 @@
 {% endblock %}
 
 {% block footer_table %}
-    <a href="#" class="btn btn-outline-info btn-lg">Histórico</a>
+    <form action="" method="post" id="history">
+        {% csrf_token %}
+        <input type="hidden" name="search" id="form-search">
+        <input type="hidden" name="year" id="form-year">
+        <input type="hidden" name="category" id="form-category">
+        <button type="submit" class="btn btn-outline-info btn-lg">Histórico</button>
+    </form>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script>
+        const d = document
+        d.querySelector('#history').addEventListener('submit', function (ev) {
+            ev.preventDefault()
+            d.querySelector('#form-search').value = d.querySelector('#search-search').value
+            d.querySelector('#form-year').value = d.querySelector('#search-year').value
+            d.querySelector('#form-category').value = d.querySelector('#search-category').value
+            this.submit()
+        })
+    </script>
 {% endblock %}
