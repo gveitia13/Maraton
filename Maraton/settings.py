@@ -45,6 +45,26 @@ INSTALLED_APPS = [
     'apps.core.apps.CoreConfig',
 ]
 
+BUSINESS_LOGO_PATH = 'img/icon.png'
+BUSINESS_NAME = 'Marabana 2023'
+BUSINESS_NAME_IMG_PATH = 'img/top-bar.jpg'
+BUSINESS_BANNER = 'img/top-bar.jpg'
+BUSINESS_ICON_PATH = 'img/icon.png'
+
+JAZZMIN_SETTINGS = {
+    "site_brand": BUSINESS_NAME,
+    "welcome_sign": '',
+    'site_icon': BUSINESS_ICON_PATH,
+    'site_logo': BUSINESS_LOGO_PATH,
+    'site_logo_classes': 'brand-image',
+    "login_logo": BUSINESS_NAME_IMG_PATH,
+    "login_logo_dark": False,
+    'site_header': BUSINESS_NAME,
+    "custom_css": 'admin/css/admin.css',
+    'copyright': 'By TechnoStar',
+    'custom_js': 'admin/js/admin.js',
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
